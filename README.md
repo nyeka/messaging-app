@@ -1,3 +1,7 @@
+# See live website
+
+https://nyeka.netlify.app/
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
@@ -8,17 +12,13 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 cd nyeka/
 
 ```
-## Install node modules 
+
+## Install node modules
 
 ```
  npm install
 
 ```
-
-# See live website
-
-https://nyeka.netlify.app/
-
 
 ## Available Scripts
 
