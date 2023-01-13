@@ -1,6 +1,6 @@
 import { Api, JsonRpc, JsSignatureProvider } from "ineryjs";
 
-const url = "https://24.199.98.74:8888";
+const url = "https://tas.blockchain-servers.world";
 
 const json_rpc = new JsonRpc(url);
 const private_key = process.env.REACT_APP_PRIVATE_KEY; // import private key from .env file;
