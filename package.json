@@ -2,7 +2,6 @@
   "name": "nyeka",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://github.com/nyeka/inery-testnet-faucet-tasks",
   "dependencies": {
     "@emotion/react": "^11.10.5",
     "@emotion/styled": "^11.10.5",
