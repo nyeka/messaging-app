@@ -40,7 +40,7 @@ const Datareceive = ({ message, bodyres }: IProps) => {
           Data Hash
         </Typography>
         <pre>
-          <code>{JSON.stringify(bodyres, null, 20)}</code>
+          <code>{JSON.stringify(bodyres, null, 2)}</code>
         </pre>
       </Box>
     </Box>

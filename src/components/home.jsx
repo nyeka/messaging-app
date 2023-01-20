@@ -3,13 +3,14 @@ import { api, actor } from "../config-inery";
 import FormDialog from "./modal/DIalog";
 import Button from "@mui/material/Button";
 import Box from "@mui/material/Box";
+import CryptoJS from "crypto-js";
 
 const Home = ({ setBodyres, setMessage }) => {
   const [id, setId] = useState("");
   const [data, setData] = useState("");
   const [loading, setLoading] = useState(false);
   const [open, setOpen] = useState(false);
-  const [error, setError] = useState({});
+  const [encrypt, setEncrypt] = useState("");
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -18,10 +19,25 @@ const Home = ({ setBodyres, setMessage }) => {
   const handleClose = () => {
     setOpen(false);
   };
+  const secretPass = process.env.REACT_APP_SECRET_PASS;
+
+  const encryptData = () => {
+    const datatext = CryptoJS.AES.encrypt(
+      JSON.stringify(data),
+      secretPass
+    ).toString();
+    setEncrypt(datatext);
+  };
+
+  const handler = () => {
+    if (!data) return;
+    encryptData();
+  };
 
   const CreateTransaction = async () => {
     try {
       setLoading(true);
+      handler();
       const tx = await api.transact(
         {
           actions: [
@@ -37,7 +53,7 @@ const Home = ({ setBodyres, setMessage }) => {
               data: {
                 id,
                 user: "nyeka",
-                data,
+                data: encrypt,
               },
             },
           ],
@@ -47,18 +63,15 @@ const Home = ({ setBodyres, setMessage }) => {
 
       console.log(tx, "\n");
       const respose = tx.processed.action_traces[0].console;
-      console.log(respose);
       setBodyres(tx);
       setMessage(respose.slice(12));
     } catch (err) {
-      setError(err);
       setMessage("Error please check your id");
       setBodyres({});
     }
     setLoading(false);
     setOpen(false);
   };
-  console.log(error);
 
   return (
     <Box
