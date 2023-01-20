@@ -12,10 +12,6 @@ const Home = ({ setBodyres, setMessage }) => {
   const [open, setOpen] = useState(false);
   const [encrypt, setEncrypt] = useState("");
 
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
-
   const handleClose = () => {
     setOpen(false);
   };
@@ -28,16 +24,14 @@ const Home = ({ setBodyres, setMessage }) => {
     ).toString();
     setEncrypt(datatext);
   };
-
-  const handler = () => {
-    if (!data) return;
+  const handleClickOpen = () => {
+    setOpen(true);
     encryptData();
   };
 
   const CreateTransaction = async () => {
     try {
       setLoading(true);
-      handler();
       const tx = await api.transact(
         {
           actions: [
@@ -60,7 +54,6 @@ const Home = ({ setBodyres, setMessage }) => {
         },
         { broadcast: true, sign: true }
       );
-
       console.log(tx, "\n");
       const respose = tx.processed.action_traces[0].console;
       setBodyres(tx);
