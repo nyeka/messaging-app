@@ -19,7 +19,7 @@ const Home = ({ setBodyres, setMessage }) => {
   const handleClose = () => {
     setOpen(false);
   };
-  const secretPass = process.env.REACT_APP_SECRET_PASS;
+  const secretPass = "XkhZG4fW2t2W23DSJHGGDEBUDUDHFHESHGDESHDS";
 
   const encryptData = () => {
     const datatext = CryptoJS.AES.encrypt(
