@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { api, actor } from "../config-inery";
 import FormDialog from "./modal/DIalog";
 import Button from "@mui/material/Button";
@@ -17,17 +17,20 @@ const Home = ({ setBodyres, setMessage }) => {
   };
   const secretPass = process.env.REACT_APP_SECRET_PASS;
 
-  const encryptData = () => {
-    const datatext = CryptoJS.AES.encrypt(
-      JSON.stringify(data),
-      secretPass
-    ).toString();
-    setEncrypt(datatext);
-  };
   const handleClickOpen = () => {
     setOpen(true);
-    encryptData();
   };
+
+  useEffect(() => {
+    const encryptData = () => {
+      const datatext = CryptoJS.AES.encrypt(
+        JSON.stringify(data),
+        secretPass
+      ).toString();
+      setEncrypt(datatext);
+    };
+    encryptData();
+  }, [data, secretPass]);
 
   const CreateTransaction = async () => {
     try {
@@ -64,6 +67,8 @@ const Home = ({ setBodyres, setMessage }) => {
     }
     setLoading(false);
     setOpen(false);
+    setId("");
+    setData("");
   };
 
   return (
